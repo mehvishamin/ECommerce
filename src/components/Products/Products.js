@@ -5,22 +5,14 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import {useNavigate } from 'react-router-dom';
 
-export default function Products({prod,cartProduct,setCartProduct}) {
-  const AddToCart=((prod)=>{
-    let productFound=false;
-     let cart=JSON.parse(localStorage?.getItem("cart"))||[];
-     cart.map((cp)=>{
-     if(prod.id==cp.product.id){
-           cp.quantity++;
-         productFound=true
-      }
-     
-    })
-    if(!productFound){
-     cart.push({product:prod,quantity:1})}
-     localStorage.setItem("cart",JSON.stringify(cart));
-     setCartProduct(cart)
+export default function Products({prod,productsList}) {
+  //creating instance for use navigate function
+  const navigate=useNavigate() 
+  //this function navigates to a path and also sends state to that path.
+  const ViewProduct=((prod)=>{
+         navigate("/productdetails",{state:{product:prod,pList:productsList}})
   })
   return (
     
@@ -35,15 +27,13 @@ export default function Products({prod,cartProduct,setCartProduct}) {
         <Typography gutterBottom variant="p" component="div" sx={{fontWeight:"bold",padding:"10px "}} >
           {prod.title}
         </Typography>
-        {/* <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography> */}
+        
       </CardContent>
       <CardActions  >
-        <Button size="small">View</Button>
-        <Button size="small" onClick={()=>{AddToCart(prod)}}>Add to Cart</Button>
-      </CardActions>
+       <Button size="small" onClick={()=>{ViewProduct(prod)}}>View</Button>
+      
+        
+         </CardActions>
       
     </Card>
     

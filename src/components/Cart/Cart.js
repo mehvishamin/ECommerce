@@ -13,9 +13,14 @@ import MailIcon from '@mui/icons-material/Mail';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { Typography } from '@mui/material';
+import CartContext from '../../utils/CartContext';
+import {useContext} from "react"
 
-export default function AnchorTemporaryDrawer({state,setState,setCartProduct,productsList,cartProduct,toggleDrawer}) {
+export default function AnchorTemporaryDrawer({state,setState,toggleDrawer}) {
+  const {cartProduct,setCartProduct}=useContext(CartContext)
+//this function adds products in the cart by using + icon
  const AddProduct=((id)=>{
+
 let cart=JSON.parse(localStorage?.getItem("cart"))||[];
    cart.map((c)=>{
       if(c.product.id==id){
@@ -25,6 +30,7 @@ let cart=JSON.parse(localStorage?.getItem("cart"))||[];
    localStorage.setItem("cart",JSON.stringify(cart))
     setCartProduct(cart);
  })
+  // this function deletes products from the cart by using -icon
  const RemoveProduct = (id) => {
   let uCart = cartProduct.filter((r) => {
     if (r.product.id === id) {

@@ -2,14 +2,14 @@ import React from 'react'
 import Products from '../Products/Products'
 
 const ProductsContent = (props) => {
-    const {productsList,setCartProduct,cartProduct}=props
+    const {productsList}=props
   return (
     <>
     <div style={{display:"flex", flexDirection:"row",justifyContent:"center", flexWrap:"wrap"}}>
        {productsList?.map((prod)=>{
           return(
     
-        <Products prod={prod} cartProduct={cartProduct} setCartProduct={setCartProduct}/>
+        <Products prod={prod} productsList={productsList} />
           )
         })}
     </div>

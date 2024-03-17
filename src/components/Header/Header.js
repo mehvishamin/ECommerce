@@ -10,6 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -53,11 +54,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Header({toggleDrawer}) {
+  
   return (
-    <Box sx={{ flexGrow: 1 }}>
+   
+    <Box sx={{ flexGrow: 1}}>
       <AppBar position="static">
-        <Toolbar>
-        <Search>
+        <Toolbar >
+      <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+             >
+           <a href='/'> MY ECOMMERCE</a>
+          </Typography>
+           
+        <Search sx={{margin:"0 30px"}}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -66,14 +78,7 @@ export default function Header({toggleDrawer}) {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            
-          </Typography>
+         
           
           <IconButton
             size="large"
